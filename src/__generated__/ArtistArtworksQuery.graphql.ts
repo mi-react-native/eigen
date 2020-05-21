@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 888cfcc406abff297460a10f7621bef3 */
+/* @relayHash 66af5631f88c2f4e87fdc5eb737d6cd1 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -11,6 +11,7 @@ export type ArtistArtworksQueryVariables = {
     sort?: string | null;
     medium?: string | null;
     priceRange?: string | null;
+    majorPeriod?: string | null;
     acquireable?: boolean | null;
     inquireableOnly?: boolean | null;
     atAuction?: boolean | null;
@@ -36,6 +37,7 @@ query ArtistArtworksQuery(
   $sort: String
   $medium: String
   $priceRange: String
+  $majorPeriod: String
   $acquireable: Boolean
   $inquireableOnly: Boolean
   $atAuction: Boolean
@@ -44,17 +46,17 @@ query ArtistArtworksQuery(
   node(id: $id) {
     __typename
     ... on Artist {
-      ...ArtistArtworks_artist_2PJ1Qq
+      ...ArtistArtworks_artist_tsoeF
     }
     id
   }
 }
 
-fragment ArtistArtworks_artist_2PJ1Qq on Artist {
+fragment ArtistArtworks_artist_tsoeF on Artist {
   id
   slug
   internalID
-  artworks: filterArtworksConnection(first: $count, after: $cursor, sort: $sort, medium: $medium, priceRange: $priceRange, acquireable: $acquireable, inquireableOnly: $inquireableOnly, atAuction: $atAuction, offerable: $offerable, aggregations: [TOTAL]) {
+  artworks: filterArtworksConnection(first: $count, after: $cursor, sort: $sort, medium: $medium, priceRange: $priceRange, majorPeriods: [$majorPeriod], acquireable: $acquireable, inquireableOnly: $inquireableOnly, atAuction: $atAuction, offerable: $offerable, aggregations: [TOTAL]) {
     edges {
       node {
         id
@@ -192,6 +194,12 @@ var v0 = [
   },
   {
     "kind": "LocalArgument",
+    "name": "majorPeriod",
+    "type": "String",
+    "defaultValue": null
+  },
+  {
+    "kind": "LocalArgument",
     "name": "acquireable",
     "type": "Boolean",
     "defaultValue": null
@@ -300,6 +308,17 @@ v13 = [
     "variableName": "count"
   },
   (v4/*: any*/),
+  {
+    "kind": "ListValue",
+    "name": "majorPeriods",
+    "items": [
+      {
+        "kind": "Variable",
+        "name": "majorPeriods.0",
+        "variableName": "majorPeriod"
+      }
+    ]
+  },
   (v5/*: any*/),
   (v6/*: any*/),
   (v7/*: any*/),
@@ -351,6 +370,11 @@ return {
                     "variableName": "cursor"
                   },
                   (v4/*: any*/),
+                  {
+                    "kind": "Variable",
+                    "name": "majorPeriod",
+                    "variableName": "majorPeriod"
+                  },
                   (v5/*: any*/),
                   (v6/*: any*/),
                   (v7/*: any*/),
@@ -621,6 +645,7 @@ return {
                   "sort",
                   "medium",
                   "priceRange",
+                  "majorPeriods",
                   "acquireable",
                   "inquireableOnly",
                   "atAuction",
@@ -735,11 +760,11 @@ return {
   "params": {
     "operationKind": "query",
     "name": "ArtistArtworksQuery",
-    "id": "1683f56471ee0076277d5cad207a80b1",
+    "id": "e39dcc580e923e6db6d44a57e10c19a2",
     "text": null,
     "metadata": {}
   }
 };
 })();
-(node as any).hash = 'e3f8b0b08b8fa16ddec77412f3884508';
+(node as any).hash = '581750856b1970dc8043fc2f63e39aa5';
 export default node;

@@ -1,4 +1,8 @@
-import { OrderedTimePeriodFilters, TimePeriodOption } from "lib/Scenes/Collection/Helpers/FilterArtworksHelpers"
+import {
+  FilterOption,
+  OrderedTimePeriodFilters,
+  TimePeriodOption,
+} from "lib/Scenes/Collection/Helpers/FilterArtworksHelpers"
 import { ArtworkFilterContext, useSelectedOptionsDisplay } from "lib/utils/ArtworkFiltersStore"
 import React, { useContext } from "react"
 import { NavigatorIOS } from "react-native"
@@ -11,7 +15,7 @@ interface TimePeriodOptionsScreenProps {
 export const TimePeriodOptionsScreen: React.SFC<TimePeriodOptionsScreenProps> = ({ navigator }) => {
   const { dispatch } = useContext(ArtworkFilterContext)
 
-  const filterType = "timePeriod"
+  const filterType: FilterOption = "majorPeriod"
 
   const selectedOptions = useSelectedOptionsDisplay()
   const selectedOption = selectedOptions.find(option => option.filterType === filterType)?.value! as TimePeriodOption

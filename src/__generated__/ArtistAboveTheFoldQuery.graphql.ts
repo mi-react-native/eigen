@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-/* @relayHash 62307bedc5ff97186d13965ffd509398 */
+/* @relayHash d22c6d385686d7468b371ffa886d0586 */
 
 import { ConcreteRequest } from "relay-runtime";
 import { FragmentRefs } from "relay-runtime";
@@ -52,7 +52,7 @@ fragment ArtistArtworks_artist on Artist {
   id
   slug
   internalID
-  artworks: filterArtworksConnection(first: 10, sort: "-decayed_merch", medium: "*", priceRange: "", acquireable: true, inquireableOnly: true, atAuction: true, offerable: true, aggregations: [TOTAL]) {
+  artworks: filterArtworksConnection(first: 10, sort: "-decayed_merch", medium: "*", priceRange: "", majorPeriods: [""], acquireable: true, inquireableOnly: true, atAuction: true, offerable: true, aggregations: [TOTAL]) {
     edges {
       node {
         id
@@ -277,6 +277,17 @@ v13 = [
     "value": true
   },
   {
+    "kind": "ListValue",
+    "name": "majorPeriods",
+    "items": [
+      {
+        "kind": "Literal",
+        "name": "majorPeriods.0",
+        "value": ""
+      }
+    ]
+  },
+  {
     "kind": "Literal",
     "name": "medium",
     "value": "*"
@@ -416,7 +427,7 @@ return {
             "kind": "LinkedField",
             "alias": "artworks",
             "name": "filterArtworksConnection",
-            "storageKey": "filterArtworksConnection(acquireable:true,aggregations:[\"TOTAL\"],atAuction:true,first:10,inquireableOnly:true,medium:\"*\",offerable:true,priceRange:\"\",sort:\"-decayed_merch\")",
+            "storageKey": null,
             "args": (v13/*: any*/),
             "concreteType": "FilterArtworksConnection",
             "plural": false,
@@ -642,6 +653,7 @@ return {
               "sort",
               "medium",
               "priceRange",
+              "majorPeriods",
               "acquireable",
               "inquireableOnly",
               "atAuction",
@@ -750,7 +762,7 @@ return {
   "params": {
     "operationKind": "query",
     "name": "ArtistAboveTheFoldQuery",
-    "id": "93d72115fb12ea68643dedbdec29fcae",
+    "id": "10d962845dbe830f5515ac65e702c479",
     "text": null,
     "metadata": {}
   }
