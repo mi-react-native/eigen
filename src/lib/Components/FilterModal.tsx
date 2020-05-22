@@ -115,7 +115,7 @@ interface FilterOptionsProps {
   slug: string
 }
 
-type FilterScreens = "sort" | "waysToBuy" | "medium" | "priceRange" | "majorPeriods" | "size"
+type FilterScreens = "sort" | "waysToBuy" | "medium" | "priceRange" | "majorPeriods" | "dimensionRange"
 
 interface FilterOptions {
   filterType: FilterScreens
@@ -166,7 +166,7 @@ export const FilterOptions: React.SFC<FilterOptionsProps> = props => {
     },
     {
       filterText: "Size",
-      filterType: "size",
+      filterType: "dimensionRange",
       FilterScreenComponent: SizeOptionsScreen,
     },
     {
