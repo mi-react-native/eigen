@@ -14,6 +14,7 @@ import NavigatorIOS from "react-native-navigator-ios"
 import { useTracking } from "react-tracking"
 import styled from "styled-components/native"
 import { ArtworkFilterContext, useSelectedOptionsDisplay } from "../utils/ArtworkFiltersStore"
+import { ColorOptionsScreen } from "./ArtworkFilterOptions/ColorOptions"
 import { MediumOptionsScreen } from "./ArtworkFilterOptions/MediumOptions"
 import { PriceRangeOptionsScreen } from "./ArtworkFilterOptions/PriceRangeOptions"
 import { SizeOptionsScreen } from "./ArtworkFilterOptions/SizeOptions"
@@ -115,7 +116,7 @@ interface FilterOptionsProps {
   slug: string
 }
 
-type FilterScreens = "sort" | "waysToBuy" | "medium" | "priceRange" | "majorPeriods" | "dimensionRange"
+type FilterScreens = "sort" | "waysToBuy" | "medium" | "priceRange" | "majorPeriods" | "dimensionRange" | "color"
 
 interface FilterOptions {
   filterType: FilterScreens
@@ -168,6 +169,11 @@ export const FilterOptions: React.SFC<FilterOptionsProps> = props => {
       filterText: "Size",
       filterType: "dimensionRange",
       FilterScreenComponent: SizeOptionsScreen,
+    },
+    {
+      filterText: "Color",
+      filterType: "color",
+      FilterScreenComponent: ColorOptionsScreen,
     },
     {
       filterText: "Time Period",

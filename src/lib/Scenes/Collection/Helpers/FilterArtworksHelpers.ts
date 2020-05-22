@@ -6,6 +6,7 @@ const defaultFilterParams = {
   medium: "*",
   priceRange: "",
   dimensionRange: "*-*",
+  color: "*-*",
   majorPeriods: [],
   atAuction: false,
   acquireable: false,
@@ -159,6 +160,19 @@ export type SizeOption = keyof typeof SizeFilters
 
 export const OrderedSizeFilters: SizeOption[] = ["All", 'Small (0"-40")', 'Medium (40"-70")', 'Large (70"+")']
 
+// Color types
+
+enum ColorFilters {
+  "Any" = "*-*",
+  'Small (0"-40")' = "*-40",
+  'Medium (40"-70")' = "40-70",
+  'Large (70"+")' = "70-*",
+}
+
+export type ColorOption = keyof typeof ColorFilters
+
+export const OrderedColorFilters: ColorOption[] = ["Any", 'Small (0"-40")', 'Medium (40"-70")', 'Large (70"+")']
+
 // Time Period types
 enum TimePeriodFilters {
   "All" = "",
@@ -251,6 +265,7 @@ interface FilterTypes {
   medium: any
   priceRange: any
   dimensionRange: any
+  color: any
   majorPeriods: any
   waysToBuyBuy: any
   waysToBuyBid: any
@@ -266,6 +281,7 @@ const filterTypeToParam: FilterTypes = {
   medium: MediumFilters,
   priceRange: PriceRangeFilters,
   dimensionRange: SizeFilters,
+  color: ColorFilters,
   majorPeriods: mapTimePeriodTypesToFilterTypes,
   waysToBuyBuy: { waysToBuyBuy: "acquireable" },
   waysToBuyBid: { waysToBuyBid: "atAuction" },
@@ -304,6 +320,7 @@ interface FilterParams {
     | "performance-art"
   priceRange?: "" | "*-5000" | "5000-10000" | "10000-20000" | "20000-40000" | "50000-*"
   dimensionRange?: "*-*" | "*-40" | "40-70" | "70-*"
+  color?: "*-*" | "*-40" | "40-70" | "70-*"
   majorPeriod?:
     | []
     | "2010"
