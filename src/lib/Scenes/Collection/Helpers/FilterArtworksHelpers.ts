@@ -146,6 +146,11 @@ export const OrderedPriceRangeFilters: PriceRangeOption[] = [
   "$0-5,000",
 ]
 
+// Size Types
+enum SizeFilters {
+  "Some size" = "Here is where I would put a size",
+}
+
 // Time Period types
 enum TimePeriodFilters {
   "All" = "",
@@ -237,6 +242,7 @@ interface FilterTypes {
   sort: any
   medium: any
   priceRange: any
+  size: any
   majorPeriods: any
   waysToBuyBuy: any
   waysToBuyBid: any
@@ -251,6 +257,7 @@ const filterTypeToParam: FilterTypes = {
   sort: ArtworkSorts,
   medium: MediumFilters,
   priceRange: PriceRangeFilters,
+  size: SizeFilters,
   majorPeriods: mapTimePeriodTypesToFilterTypes,
   waysToBuyBuy: { waysToBuyBuy: "acquireable" },
   waysToBuyBid: { waysToBuyBid: "atAuction" },

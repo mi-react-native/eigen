@@ -16,7 +16,7 @@ type SingleSelectOptions = MediumOption | SortOption | PriceRangeOption | TimePe
 
 interface SingleSelectOptionScreenProps {
   navigator: NavigatorIOS
-  filterText: "Sort" | "Medium" | "Price Range" | "Time Period"
+  filterText: "Sort" | "Medium" | "Price Range" | "Time Period" | "Size"
   onSelect: (any: any) => void
   selectedOption: SingleSelectOptions
   filterOptions: SingleSelectOptions[]
