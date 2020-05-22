@@ -15,7 +15,7 @@ interface TimePeriodOptionsScreenProps {
 export const TimePeriodOptionsScreen: React.SFC<TimePeriodOptionsScreenProps> = ({ navigator }) => {
   const { dispatch } = useContext(ArtworkFilterContext)
 
-  const filterType: FilterOption = "majorPeriod"
+  const filterType: FilterOption = "majorPeriods"
 
   const selectedOptions = useSelectedOptionsDisplay()
   const selectedOption = selectedOptions.find(option => option.filterType === filterType)?.value! as TimePeriodOption

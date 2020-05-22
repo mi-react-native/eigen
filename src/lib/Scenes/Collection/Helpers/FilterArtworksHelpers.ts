@@ -5,6 +5,7 @@ const defaultFilterParams = {
   sort: "-decayed_merch",
   medium: "*",
   priceRange: "",
+  majorPeriods: "",
   atAuction: false,
   acquireable: false,
   inquireableOnly: false,
@@ -166,7 +167,7 @@ enum TimePeriodFilters {
 }
 
 export const mapTimePeriodTypesToFilterTypes = {
-  All: "",
+  All: [],
   "2010-today": "2010",
   "2000-2009": "2000",
   "1990-1999": "1990",
@@ -236,7 +237,7 @@ interface FilterTypes {
   sort: any
   medium: any
   priceRange: any
-  majorPeriod: any
+  majorPeriods: any
   waysToBuyBuy: any
   waysToBuyBid: any
   waysToBuyInquire: any
@@ -250,7 +251,7 @@ const filterTypeToParam: FilterTypes = {
   sort: ArtworkSorts,
   medium: MediumFilters,
   priceRange: PriceRangeFilters,
-  majorPeriod: TimePeriodFilters,
+  majorPeriods: mapTimePeriodTypesToFilterTypes,
   waysToBuyBuy: { waysToBuyBuy: "acquireable" },
   waysToBuyBid: { waysToBuyBid: "atAuction" },
   waysToBuyInquire: {

@@ -339,7 +339,7 @@ describe("Filter modal states", () => {
         { filterType: "sort", value: "Price (low to high)" },
         { filterType: "priceRange", value: "$10,000-20,000" },
         { filterType: "waysToBuyBid", value: true },
-        { filterType: "majorPeriod", value: "All" },
+        { filterType: "majorPeriods", value: "All" },
       ],
       appliedFilters: [],
       previouslyAppliedFilters: [],

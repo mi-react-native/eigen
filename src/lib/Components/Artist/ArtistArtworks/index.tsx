@@ -145,7 +145,7 @@ export default createPaginationContainer(
           sort: { type: "String", defaultValue: "-decayed_merch" }
           medium: { type: "String", defaultValue: "*" }
           priceRange: { type: "String", defaultValue: "" }
-          majorPeriod: { type: "String", defaultValue: "" }
+          majorPeriods: { type: "[String]" }
           acquireable: { type: "Boolean", defaultValue: true }
           inquireableOnly: { type: "Boolean", defaultValue: true }
           atAuction: { type: "Boolean", defaultValue: true }
@@ -160,7 +160,7 @@ export default createPaginationContainer(
           sort: $sort
           medium: $medium
           priceRange: $priceRange
-          majorPeriods: [$majorPeriod]
+          majorPeriods: $majorPeriods
           acquireable: $acquireable
           inquireableOnly: $inquireableOnly
           atAuction: $atAuction
@@ -203,7 +203,7 @@ export default createPaginationContainer(
         sort: fragmentVariables.sort,
         medium: fragmentVariables.medium,
         priceRange: fragmentVariables.priceRange,
-        majorPeriod: fragmentVariables.majorPeriod,
+        majorPeriods: fragmentVariables.majorPeriods,
         acquireable: fragmentVariables.acquireable,
         inquireableOnly: fragmentVariables.inquireableOnly,
         atAuction: fragmentVariables.atAuction,
@@ -218,7 +218,7 @@ export default createPaginationContainer(
         $sort: String
         $medium: String
         $priceRange: String
-        $majorPeriod: String
+        $majorPeriods: [String]
         $acquireable: Boolean
         $inquireableOnly: Boolean
         $atAuction: Boolean
@@ -233,7 +233,7 @@ export default createPaginationContainer(
                 sort: $sort
                 medium: $medium
                 priceRange: $priceRange
-                majorPeriod: $majorPeriod
+                majorPeriods: $majorPeriods
                 acquireable: $acquireable
                 inquireableOnly: $inquireableOnly
                 atAuction: $atAuction
