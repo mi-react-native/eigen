@@ -5,7 +5,7 @@ const defaultFilterParams = {
   sort: "-decayed_merch",
   medium: "*",
   priceRange: "",
-  majorPeriods: "",
+  majorPeriods: [],
   atAuction: false,
   acquireable: false,
   inquireableOnly: false,
@@ -289,7 +289,7 @@ interface FilterParams {
     | "performance-art"
   priceRange?: "" | "*-5000" | "5000-10000" | "10000-20000" | "20000-40000" | "50000-*"
   majorPeriod?:
-    | "*"
+    | []
     | "2010"
     | "2000"
     | "1990"
