@@ -25,12 +25,12 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = props => {
     pink: "#B82C83",
     darkviolet: "#642B7F",
     violet: "#6C479C",
-    "black-and-white": "#DFDFDF",
+    "black-and-white": "#595A5B",
   }
 
   const blackAndWhiteDisplayColor = () => {
     if (index === 0) {
-      return "#DFDFDF"
+      return "#595A5B"
     } else {
       return "#FFFFFF"
     }

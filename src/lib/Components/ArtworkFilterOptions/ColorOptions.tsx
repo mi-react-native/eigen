@@ -1,6 +1,7 @@
 import { Flex } from "@artsy/palette"
 import { ColorOption, OrderedColorFilters } from "lib/Scenes/Collection/Helpers/FilterArtworksHelpers"
 import { ArtworkFilterContext, useSelectedOptionsDisplay } from "lib/utils/ArtworkFiltersStore"
+import { ceil } from "lodash"
 import React, { useContext, useState } from "react"
 import { LayoutChangeEvent, NavigatorIOS, TouchableOpacity, View } from "react-native"
 import styled from "styled-components/native"
@@ -13,6 +14,7 @@ interface ColorOptionsScreenProps {
 
 export const ColorOptionsScreen: React.SFC<ColorOptionsScreenProps> = ({ navigator }) => {
   const { dispatch } = useContext(ArtworkFilterContext)
+  const [itemSize, setItemSize] = useState(0)
 
   const filterType = "color"
 
@@ -28,21 +30,24 @@ export const ColorOptionsScreen: React.SFC<ColorOptionsScreenProps> = ({ navigat
   }
 
   const handleLayout = (event: LayoutChangeEvent) => {
-    // const { width } = event.nativeEvent.layout
-    // const itemWidth = 20
-    // const columns = Math.floor( width / itemWidth )
-    // setNumColumns(columns)
+    const { width } = event.nativeEvent.layout
+    const itemsPerLine = ceil(OrderedColorFilters.length / 2)
+    const interItemSpace = 20 * (itemsPerLine - 1)
+    const sideMarginSpace = 20 * 2
+    const spaceForItems = width - (sideMarginSpace + interItemSpace)
+    const size = spaceForItems / itemsPerLine
+    setItemSize(size)
   }
 
   return (
     <View onLayout={handleLayout}>
-      <Flex flexGrow={1}>
+      <Flex flexGrow={1} ml={"6px"} mr={"6px"}>
         <ArtworkFilterHeader filterName={"Color"} handleBackNavigation={handleBackNavigation} />
-        <Flex flexWrap="wrap" flexDirection="row" mb="125px">
+        <Flex flexWrap="wrap" flexDirection="row" justifyContent="space-between">
           {OrderedColorFilters.map((item, index) => {
             return (
               <ColorContainer key={index}>
-                <ColorSwatch size={32} colorName={item} index={index} />
+                <ColorSwatch size={itemSize} colorName={item} index={index} />
               </ColorContainer>
             )
           })}
@@ -53,5 +58,5 @@ export const ColorOptionsScreen: React.SFC<ColorOptionsScreenProps> = ({ navigat
 }
 
 export const ColorContainer = styled(TouchableOpacity)`
-  margin: 20px 0px 0px 20px;
+  margin: 20px 10px 0px 10px;
 `
