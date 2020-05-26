@@ -4,13 +4,14 @@ import React from "react"
 import { View } from "react-native"
 
 interface ColorSwatchProps {
-  colorName: ColorOption
+  colorOption: ColorOption
+  selected: boolean
   index: number
   size: number
 }
 
 export const ColorSwatch: React.FC<ColorSwatchProps> = props => {
-  const { colorName, size, index } = props
+  const { colorOption, size, index, selected } = props
 
   const colorHexMap: Record<ColorOption, string> = {
     orange: "#F7923A",
@@ -37,10 +38,10 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = props => {
   }
 
   const interiorCircleColor = () => {
-    if (colorName === "black-and-white") {
+    if (colorOption === "black-and-white") {
       return blackAndWhiteDisplayColor()
     } else {
-      return colorHexMap[colorName]
+      return colorHexMap[colorOption]
     }
   }
 
@@ -56,7 +57,10 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = props => {
       height={exteriorCircleSize}
       width={exteriorCircleSize}
       borderRadius={exteriorCircleSize / 2}
-      style={{ borderWidth: 0.5, borderColor: color("black10") }}
+      style={{
+        borderWidth: 1,
+        borderColor: selected ? color("black100") : color("black10"),
+      }}
     >
       <View
         style={{
@@ -64,10 +68,10 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = props => {
           height: interiorCircleSize,
           borderRadius: interiorCircleSize / 2,
           backgroundColor: interiorCircleColor(),
-          borderWidth: 0.5,
+          borderWidth: 1,
           borderColor: color("black10"),
         }}
-      ></View>
+      />
     </Flex>
   )
 }

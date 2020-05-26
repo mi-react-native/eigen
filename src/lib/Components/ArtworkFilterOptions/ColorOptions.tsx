@@ -46,8 +46,8 @@ export const ColorOptionsScreen: React.SFC<ColorOptionsScreenProps> = ({ navigat
         <Flex flexWrap="wrap" flexDirection="row" justifyContent="space-between">
           {OrderedColorFilters.map((item, index) => {
             return (
-              <ColorContainer key={index}>
-                <ColorSwatch size={itemSize} colorName={item} index={index} />
+              <ColorContainer onPress={() => selectOption(item)} key={index}>
+                <ColorSwatch size={itemSize} selected={selectedOption === item} colorOption={item} index={index} />
               </ColorContainer>
             )
           })}
