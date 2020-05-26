@@ -181,19 +181,20 @@ enum ColorFilters {
 export type ColorOption = keyof typeof ColorFilters
 
 export const OrderedColorFilters: ColorOption[] = [
-  "orange",
-  "darkblue",
-  "gold",
+  "black-and-white",
+  "lightgreen",
   "darkgreen",
   "lightblue",
-  "lightgreen",
+  "darkblue",
+  "violet",
+  "darkviolet",
+  "black-and-white",
   "yellow",
+  "gold",
+  "orange",
   "darkorange",
   "red",
   "pink",
-  "darkviolet",
-  "violet",
-  "black-and-white",
 ]
 
 // Time Period types
