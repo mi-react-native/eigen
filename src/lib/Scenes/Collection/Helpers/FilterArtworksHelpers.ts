@@ -163,15 +163,38 @@ export const OrderedSizeFilters: SizeOption[] = ["All", 'Small (0"-40")', 'Mediu
 // Color types
 
 enum ColorFilters {
-  "Any" = "*-*",
-  'Small (0"-40")' = "*-40",
-  'Medium (40"-70")' = "40-70",
-  'Large (70"+")' = "70-*",
+  "orange" = "orange",
+  "darkblue" = "darkblue",
+  "gold" = "gold",
+  "darkgreen" = "darkgreen",
+  "lightblue" = "lightblue",
+  "lightgreen" = "lightgreen",
+  "yellow" = "yellow",
+  "darkorange" = "darkorange",
+  "red" = "red",
+  "pink" = "pink",
+  "darkviolet" = "darkviolet",
+  "violet" = "violet",
+  "black-and-white" = "black-and-white",
 }
 
 export type ColorOption = keyof typeof ColorFilters
 
-export const OrderedColorFilters: ColorOption[] = ["Any", 'Small (0"-40")', 'Medium (40"-70")', 'Large (70"+")']
+export const OrderedColorFilters: ColorOption[] = [
+  "orange",
+  "darkblue",
+  "gold",
+  "darkgreen",
+  "lightblue",
+  "lightgreen",
+  "yellow",
+  "darkorange",
+  "red",
+  "pink",
+  "darkviolet",
+  "violet",
+  "black-and-white",
+]
 
 // Time Period types
 enum TimePeriodFilters {
