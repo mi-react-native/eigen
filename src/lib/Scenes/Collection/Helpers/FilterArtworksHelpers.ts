@@ -6,7 +6,7 @@ const defaultFilterParams = {
   medium: "*",
   priceRange: "",
   dimensionRange: "*-*",
-  color: "*-*",
+  color: null,
   majorPeriods: [],
   atAuction: false,
   acquireable: false,
@@ -344,7 +344,20 @@ interface FilterParams {
     | "performance-art"
   priceRange?: "" | "*-5000" | "5000-10000" | "10000-20000" | "20000-40000" | "50000-*"
   dimensionRange?: "*-*" | "*-40" | "40-70" | "70-*"
-  color?: "*-*" | "*-40" | "40-70" | "70-*"
+  color?:
+    | "black-and-white"
+    | "lightgreen"
+    | "darkgreen"
+    | "lightblue"
+    | "darkblue"
+    | "violet"
+    | "darkviolet"
+    | "yellow"
+    | "gold"
+    | "orange"
+    | "darkorange"
+    | "red"
+    | "pink"
   majorPeriod?:
     | []
     | "2010"
