@@ -9,26 +9,26 @@ interface ColorSwatchProps {
   size: number
 }
 
+export const colorHexMap: Record<ColorOption, string> = {
+  Any: "#FFFFFF", // should never happen
+  orange: "#F7923A",
+  darkblue: "#435EA9",
+  gold: "#FFC749",
+  darkgreen: "#388540",
+  lightblue: "#438C97",
+  lightgreen: "#BCCC46",
+  yellow: "#FBE854",
+  darkorange: "#F1572C",
+  red: "#D73127",
+  pink: "#B82C83",
+  darkviolet: "#642B7F",
+  violet: "#6C479C",
+  "black-and-white-1": "#595A5B",
+  "black-and-white-2": "#FFFFFF",
+}
+
 export const ColorSwatch: React.FC<ColorSwatchProps> = props => {
   const { colorOption, size, selected } = props
-
-  const colorHexMap: Record<ColorOption, string> = {
-    Any: "#FFFFFF", // should never happen
-    orange: "#F7923A",
-    darkblue: "#435EA9",
-    gold: "#FFC749",
-    darkgreen: "#388540",
-    lightblue: "#438C97",
-    lightgreen: "#BCCC46",
-    yellow: "#FBE854",
-    darkorange: "#F1572C",
-    red: "#D73127",
-    pink: "#B82C83",
-    darkviolet: "#642B7F",
-    violet: "#6C479C",
-    "black-and-white-1": "#595A5B",
-    "black-and-white-2": "#FFFFFF",
-  }
 
   const exteriorCircleSize = size
   const interiorCircleSize = size * 0.625
