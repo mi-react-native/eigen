@@ -6,14 +6,14 @@ import { View } from "react-native"
 interface ColorSwatchProps {
   colorOption: ColorOption
   selected: boolean
-  index: number
   size: number
 }
 
 export const ColorSwatch: React.FC<ColorSwatchProps> = props => {
-  const { colorOption, size, index, selected } = props
+  const { colorOption, size, selected } = props
 
   const colorHexMap: Record<ColorOption, string> = {
+    Any: "#FFFFFF", // should never happen
     orange: "#F7923A",
     darkblue: "#435EA9",
     gold: "#FFC749",
@@ -26,23 +26,8 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = props => {
     pink: "#B82C83",
     darkviolet: "#642B7F",
     violet: "#6C479C",
-    "black-and-white": "#595A5B",
-  }
-
-  const blackAndWhiteDisplayColor = () => {
-    if (index === 0) {
-      return "#595A5B"
-    } else {
-      return "#FFFFFF"
-    }
-  }
-
-  const interiorCircleColor = () => {
-    if (colorOption === "black-and-white") {
-      return blackAndWhiteDisplayColor()
-    } else {
-      return colorHexMap[colorOption]
-    }
+    "black-and-white-1": "#595A5B",
+    "black-and-white-2": "#FFFFFF",
   }
 
   const exteriorCircleSize = size
@@ -67,7 +52,7 @@ export const ColorSwatch: React.FC<ColorSwatchProps> = props => {
           width: interiorCircleSize,
           height: interiorCircleSize,
           borderRadius: interiorCircleSize / 2,
-          backgroundColor: interiorCircleColor(),
+          backgroundColor: colorHexMap[colorOption],
           borderWidth: 1,
           borderColor: color("black10"),
         }}

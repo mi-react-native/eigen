@@ -6,7 +6,6 @@ const defaultFilterParams = {
   medium: "*",
   priceRange: "",
   dimensionRange: "*-*",
-  color: null,
   majorPeriods: [],
   atAuction: false,
   acquireable: false,
@@ -163,6 +162,7 @@ export const OrderedSizeFilters: SizeOption[] = ["All", 'Small (0"-40")', 'Mediu
 // Color types
 
 enum ColorFilters {
+  "Any" = "*",
   "orange" = "orange",
   "darkblue" = "darkblue",
   "gold" = "gold",
@@ -175,20 +175,21 @@ enum ColorFilters {
   "pink" = "pink",
   "darkviolet" = "darkviolet",
   "violet" = "violet",
-  "black-and-white" = "black-and-white",
+  "black-and-white-1" = "black-and-white",
+  "black-and-white-2" = "black-and-white",
 }
 
 export type ColorOption = keyof typeof ColorFilters
 
 export const OrderedColorFilters: ColorOption[] = [
-  "black-and-white",
+  "black-and-white-1",
   "lightgreen",
   "darkgreen",
   "lightblue",
   "darkblue",
   "violet",
   "darkviolet",
-  "black-and-white",
+  "black-and-white-2",
   "yellow",
   "gold",
   "orange",

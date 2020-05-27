@@ -22,7 +22,11 @@ export const ColorOptionsScreen: React.SFC<ColorOptionsScreenProps> = ({ navigat
   const selectedOption = selectedOptions.find(option => option.filterType === filterType)?.value! as ColorOption
 
   const selectOption = (option: ColorOption) => {
-    dispatch({ type: "selectFilters", payload: { value: option, filterType } })
+    if (option === selectedOption) {
+      dispatch({ type: "selectFilters", payload: { value: "Any", filterType } })
+    } else {
+      dispatch({ type: "selectFilters", payload: { value: option, filterType } })
+    }
   }
 
   const handleBackNavigation = () => {
@@ -47,7 +51,7 @@ export const ColorOptionsScreen: React.SFC<ColorOptionsScreenProps> = ({ navigat
           {OrderedColorFilters.map((item, index) => {
             return (
               <ColorContainer onPress={() => selectOption(item)} key={index}>
-                <ColorSwatch size={itemSize} selected={selectedOption === item} colorOption={item} index={index} />
+                <ColorSwatch size={itemSize} selected={selectedOption === item} colorOption={item} />
               </ColorContainer>
             )
           })}
