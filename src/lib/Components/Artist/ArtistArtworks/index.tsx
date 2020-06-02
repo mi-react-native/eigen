@@ -125,9 +125,10 @@ const ArtistArtworksContainer: React.FC<ArtworksGridProps> = ({ artist, relay, .
     <>
       <ArtistCollectionsRailFragmentContainer collections={artist.iconicCollections} artist={artist} {...props} />
       <InfiniteScrollArtworksGrid
-        // @ts-ignore STRICTNESS_MIGRATION
         connection={artist.artworks}
         loadMore={relay.loadMore}
+        hasMore={relay.hasMore}
+        isLoading={relay.isLoading}
         {...props}
       />
     </>
