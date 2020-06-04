@@ -13,7 +13,7 @@ import NavigatorIOS from "react-native-navigator-ios"
 import styled from "styled-components/native"
 import { OptionListItem } from "../FilterModal"
 
-type SingleSelectOptions = MediumOption | SortOption | PriceRangeOption | TimePeriodOption | SizeOption
+type SingleSelectOptions = MediumOption | SortOption | PriceRangeOption | TimePeriodOption | SizeOption | string
 
 interface SingleSelectOptionScreenProps {
   navigator: NavigatorIOS

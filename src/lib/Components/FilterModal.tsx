@@ -361,6 +361,19 @@ const filterTypeFromAggregation = (name: AggregationName): FilterScreen | undefi
   return aggregationToFilterTypeMap.get(name)
 }
 
+export const aggregationFromFilterType = (filterOption: FilterOption): AggregationName | undefined => {
+  const filterTypeToAggregationMap: Map<FilterOption, AggregationName> = new Map([
+    ["color", "COLOR"],
+    ["dimensionRange", "DIMENSION_RANGE"],
+    ["gallery", "GALLERY"],
+    ["institution", "INSTITUTION"],
+    ["majorPeriods", "MAJOR_PERIOD"],
+    ["medium", "MEDIUM"],
+    ["priceRange", "PRICE_RANGE"],
+  ])
+  return filterTypeToAggregationMap.get(filterOption)
+}
+
 const filterOptionToDisplayConfigMap: Map<FilterScreen, FilterDisplayConfig> = new Map([
   [
     "sort",
