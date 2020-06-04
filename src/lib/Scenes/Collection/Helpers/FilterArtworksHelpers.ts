@@ -13,7 +13,7 @@ const defaultFilterParams = {
   offerable: false,
 } as FilterParams
 
-const applyFilters = (appliedFilters: FilterArray, filterParams: FilterParams) => {
+const paramsFromAppliedFilters = (appliedFilters: FilterArray, filterParams: FilterParams) => {
   appliedFilters.forEach(appliedFilterOption => {
     const paramMapping = filterTypeToParam[appliedFilterOption.filterType]
     const paramValue =
@@ -31,11 +31,11 @@ const applyFilters = (appliedFilters: FilterArray, filterParams: FilterParams) =
 }
 
 export const filterArtworksParams = (appliedFilters: FilterArray) => {
-  return applyFilters(appliedFilters, { ...defaultFilterParams })
+  return paramsFromAppliedFilters(appliedFilters, { ...defaultFilterParams })
 }
 
 const getChangedParams = (appliedFilters: FilterArray) => {
-  const filterParams = applyFilters(appliedFilters, {})
+  const filterParams = paramsFromAppliedFilters(appliedFilters, {})
 
   // when filters cleared return default params
   return Object.keys(filterParams).length === 0 ? defaultFilterParams : filterParams
