@@ -1,9 +1,5 @@
-import {
-  FilterOption,
-  OrderedTimePeriodFilters,
-  TimePeriodOption,
-} from "lib/Scenes/Collection/Helpers/FilterArtworksHelpers"
-import { ArtworkFilterContext, useSelectedOptionsDisplay } from "lib/utils/ArtworkFiltersStore"
+import { FilterOption } from "lib/Scenes/Collection/Helpers/FilterArtworksHelpers"
+import { ArtworkFilterContext, FilterData, useSelectedOptionsDisplay } from "lib/utils/ArtworkFiltersStore"
 import _ from "lodash"
 import React, { useContext } from "react"
 import { NavigatorIOS } from "react-native"
@@ -40,27 +36,32 @@ export const TimePeriodOptionsScreen: React.SFC<TimePeriodOptionsScreenProps> = 
 
   const aggregationName = aggregationFromFilterType(filterType)
   const aggregation = aggregations!.filter(value => value.slice === aggregationName)[0]
-  // TODO: Can I just pass both the display value and the relay param value here rather than worrying about mapping
-  // between the two later?
-  // What is downside?
-  // lot of refactoring for other options
-  // instead could just get the display value here and pass as option, seems to be what is expected
   const options = aggregation.counts.map(aggCount => aggCount.value)
-  const aggregateDisplayOptions = _.compact(options.map(value => displayValue[value]))
-  const displayOptions = ["All"].concat(aggregateDisplayOptions)
+  const aggFilterOptions: FilterData[] = _.compact(
+    options.map(value => {
+      const displayText = displayValue[value]
+      if (Boolean(displayText)) {
+        return { displayText, paramValue: value, filterType }
+      } else {
+        return undefined
+      }
+    })
+  )
+  const allOption: FilterData = { displayText: "All", paramValue: "All", filterType }
+  const filterOptions = [allOption].concat(aggFilterOptions)
 
   const selectedOptions = useSelectedOptionsDisplay()
-  const selectedOption = selectedOptions.find(option => option.filterType === filterType)?.value! as TimePeriodOption
+  const selectedOption = selectedOptions.find(option => option.filterType === filterType)!
 
-  const selectOption = (option: TimePeriodOption) => {
-    dispatch({ type: "selectFilters", payload: { value: option, filterType } })
+  const selectOption = (option: FilterData) => {
+    dispatch({ type: "selectFilters", payload: option })
   }
 
   return (
     <SingleSelectOptionScreen
       onSelect={selectOption}
-      filterText="Time Period"
-      filterOptions={displayOptions}
+      filterHeaderText="Time Period"
+      filterOptions={filterOptions}
       selectedOption={selectedOption}
       navigator={navigator}
     />
