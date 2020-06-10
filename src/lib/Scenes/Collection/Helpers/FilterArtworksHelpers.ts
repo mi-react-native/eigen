@@ -172,14 +172,14 @@ enum ColorFilters {
   "pink" = "pink",
   "darkviolet" = "darkviolet",
   "violet" = "violet",
-  "black-and-white-1" = "black-and-white",
+  "black-and-white" = "black-and-white",
   "black-and-white-2" = "black-and-white",
 }
 
 export type ColorOption = keyof typeof ColorFilters
 
 export const OrderedColorFilters: ColorOption[] = [
-  "black-and-white-1",
+  "black-and-white",
   "lightgreen",
   "darkgreen",
   "lightblue",
@@ -365,4 +365,9 @@ export interface InitialState {
     previouslyAppliedFilters: FilterArray
     applyFilters: boolean
   }
+}
+
+export interface AggregateOption {
+  displayText: string
+  paramValue: string
 }

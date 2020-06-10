@@ -40,7 +40,7 @@ export const FilterModalNavigator: React.SFC<FilterModalProps> = props => {
   const tracking = useTracking()
 
   const { closeModal, exitModal, isFilterArtworksModalVisible, id, slug } = props
-  const { dispatch, state } = useContext(ArtworkFilterContext)
+  const { dispatch, state, aggregations } = useContext(ArtworkFilterContext)
 
   const handleClosingModal = () => {
     dispatch({ type: "resetFilters" })
