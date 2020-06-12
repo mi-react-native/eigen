@@ -1,4 +1,4 @@
-import { FilterOption } from "lib/Scenes/Collection/Helpers/FilterArtworksHelpers"
+import { FilterOption, FilterParamName, FilterType } from "lib/Scenes/Collection/Helpers/FilterArtworksHelpers"
 import { ArtworkFilterContext, FilterData, useSelectedOptionsDisplay } from "lib/utils/ArtworkFiltersStore"
 import _ from "lodash"
 import React, { useContext } from "react"
@@ -32,7 +32,8 @@ export const TimePeriodOptionsScreen: React.SFC<TimePeriodOptionsScreenProps> = 
     "Early 19th century": "Early 19th Century",
   }
 
-  const filterType: FilterOption = "majorPeriods"
+  const filterType = FilterType.timePeriod
+  const paramName = FilterParamName.timePeriod
 
   const aggregationName = aggregationFromFilterType(filterType)
   const aggregation = aggregations!.filter(value => value.slice === aggregationName)[0]
@@ -41,13 +42,13 @@ export const TimePeriodOptionsScreen: React.SFC<TimePeriodOptionsScreenProps> = 
     options.map(value => {
       const displayText = displayValue[value]
       if (Boolean(displayText)) {
-        return { displayText, paramValue: value, filterType }
+        return { displayText, paramValue: value, paramName, filterType }
       } else {
         return undefined
       }
     })
   )
-  const allOption: FilterData = { displayText: "All", paramValue: "All", filterType }
+  const allOption: FilterData = { displayText: "All", paramName, filterType }
   const filterOptions = [allOption].concat(aggFilterOptions)
 
   const selectedOptions = useSelectedOptionsDisplay()

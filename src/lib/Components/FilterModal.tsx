@@ -392,7 +392,7 @@ export const aggregationFromFilterType = (filterType: FilterType): AggregationNa
   return filterTypeToAggregationMap.get(filterType)
 }
 
-const filterOptionToDisplayConfigMap: Map<FilterScreen, FilterDisplayConfig> = new Map([
+const filterOptionToDisplayConfigMap: Map<FilterType, FilterDisplayConfig> = new Map([
   [
     "sort",
     {
@@ -426,7 +426,7 @@ const filterOptionToDisplayConfigMap: Map<FilterScreen, FilterDisplayConfig> = n
     },
   ],
   [
-    "size",
+    "dimensionRange",
     {
       displayText: FilterDisplayName.size,
       filterType: "dimensionRange",
