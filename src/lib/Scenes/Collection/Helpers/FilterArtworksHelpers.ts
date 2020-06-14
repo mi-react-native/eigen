@@ -10,7 +10,7 @@ export enum FilterType {
   color = "color",
   gallery = "gallery",
   institution = "institution",
-  timePeriod = "timePeriod",
+  timePeriod = "majorPeriods",
   waysToBuyBuy = "acquireable",
   waysToBuyBid = "atAuction",
   waysToBuyInquire = "inquireableOnly",

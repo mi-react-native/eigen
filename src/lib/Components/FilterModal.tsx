@@ -449,7 +449,7 @@ const filterOptionToDisplayConfigMap: Map<FilterType, FilterDisplayConfig> = new
     },
   ],
   [
-    "timePeriod",
+    "majorPeriods",
     {
       displayText: FilterDisplayName.timePeriod,
       filterType: "majorPeriods",
