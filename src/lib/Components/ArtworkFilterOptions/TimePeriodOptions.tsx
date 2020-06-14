@@ -3,7 +3,7 @@ import { ArtworkFilterContext, FilterData, useSelectedOptionsDisplay } from "lib
 import _ from "lodash"
 import React, { useContext } from "react"
 import { NavigatorIOS } from "react-native"
-import { aggregationFromFilterType } from "../FilterModal"
+import { aggregationForFilterType, aggregationFromFilterType } from "../FilterModal"
 import { SingleSelectOptionScreen } from "./SingleSelectOption"
 
 interface TimePeriodOptionsScreenProps {
@@ -35,8 +35,7 @@ export const TimePeriodOptionsScreen: React.SFC<TimePeriodOptionsScreenProps> = 
   const filterType = FilterType.timePeriod
   const paramName = FilterParamName.timePeriod
 
-  const aggregationName = aggregationFromFilterType(filterType)
-  const aggregation = aggregations!.filter(value => value.slice === aggregationName)[0]
+  const aggregation = aggregationForFilterType(filterType, aggregations!)
   const options = aggregation.counts.map(aggCount => aggCount.value)
   const aggFilterOptions: FilterData[] = _.compact(
     options.map(value => {

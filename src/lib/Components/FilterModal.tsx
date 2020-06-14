@@ -16,6 +16,7 @@ import { useTracking } from "react-tracking"
 import styled from "styled-components/native"
 import {
   AggregationName,
+  Aggregations,
   ArtworkFilterContext,
   FilterData,
   useSelectedOptionsDisplay,
@@ -379,7 +380,7 @@ const filterTypeFromAggregation = (name: AggregationName): FilterType | undefine
   return aggregationToFilterTypeMap.get(name)
 }
 
-export const aggregationFromFilterType = (filterType: FilterType): AggregationName | undefined => {
+export const aggregationNameFromFilterType = (filterType: FilterType): AggregationName | undefined => {
   const filterTypeToAggregationMap: Map<FilterType, AggregationName> = new Map([
     [FilterType.color, "COLOR"],
     [FilterType.size, "DIMENSION_RANGE"],
@@ -390,6 +391,12 @@ export const aggregationFromFilterType = (filterType: FilterType): AggregationNa
     [FilterType.priceRange, "PRICE_RANGE"],
   ])
   return filterTypeToAggregationMap.get(filterType)
+}
+
+export const aggregationForFilterType = (type: FilterType, aggregations: Aggregations) => {
+  const aggregationName = aggregationNameFromFilterType(type)
+  const aggregation = aggregations!.filter(value => value.slice === aggregationName)[0]
+  return aggregation
 }
 
 const filterOptionToDisplayConfigMap: Map<FilterType, FilterDisplayConfig> = new Map([
