@@ -355,30 +355,3 @@ enum WaysToBuyFilters {
 }
 
 export type WaysToBuyOptions = keyof typeof WaysToBuyFilters
-
-export const OrderedWaysToBuyFilters: FilterData[] = [
-  {
-    displayText: "Buy now",
-    paramName: FilterParamName.waysToBuyBuy,
-    paramValue: false, // default to false, override with toggle
-    filterType: FilterType.waysToBuyBuy,
-  },
-  {
-    displayText: "Make offer",
-    paramName: FilterParamName.waysToBuyMakeOffer,
-    paramValue: false,
-    filterType: FilterType.waysToBuyMakeOffer,
-  },
-  {
-    displayText: "Bid",
-    paramName: FilterParamName.waysToBuyBid,
-    paramValue: false,
-    filterType: FilterType.waysToBuyBid,
-  },
-  {
-    displayText: "Inquire",
-    paramName: FilterParamName.waysToBuyInquire,
-    paramValue: false,
-    filterType: FilterType.waysToBuyInquire,
-  },
-]
