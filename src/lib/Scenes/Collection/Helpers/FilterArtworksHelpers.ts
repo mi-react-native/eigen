@@ -345,13 +345,3 @@ export const OrderedTimePeriodFilters: TimePeriodOption[] = [
   "Mid 19th century",
   "Early 19th century",
 ]
-
-// Ways to Buy types
-enum WaysToBuyFilters {
-  "Buy now" = "acquireable",
-  "Make offer" = "offerable",
-  "Bid" = "atAuction",
-  "Inquire" = "inquireableOnly",
-}
-
-export type WaysToBuyOptions = keyof typeof WaysToBuyFilters
