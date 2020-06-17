@@ -15,6 +15,9 @@ export interface ArtworkModel {
   formik: FormikProps<any> | null
   initializeFormik: Action<ArtworkModel, FormikProps<any>>
 
+  formValues: ArtworkFormValues
+  setFormValues: Action<ArtworkModel, ArtworkFormValues>
+
   addArtwork: Thunk<ArtworkModel, ArtworkFormValues>
   addArtworkComplete: Action<ArtworkModel>
   addArtworkError: Action<ArtworkModel>
@@ -26,9 +29,20 @@ export interface ArtworkModel {
 
 export const artworkModel: ArtworkModel = {
   formik: null,
+  formValues: {
+    artist: "",
+    title: "",
+    year: "",
+  },
 
   initializeFormik: action((state, formik) => {
-    state.formik = formik
+    if (!state.formik) {
+      state.formik = formik
+    }
+  }),
+
+  setFormValues: action((state, input) => {
+    state.formValues = input
   }),
 
   /**

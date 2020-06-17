@@ -1,8 +1,11 @@
 import { StoreProvider } from "easy-peasy"
+import { FormikProvider, useFormik } from "formik"
 import React, { useEffect, useRef } from "react"
 import { View } from "react-native"
 import NavigatorIOS from "react-native-navigator-ios"
-import { useStoreActions } from "./State/hooks"
+import { artworkValidationSchema, validateArtworkSchema } from "./Form/artworkValidationSchema"
+import { ArtworkFormValues } from "./State/artworkModel"
+import { useStoreActions, useStoreState } from "./State/hooks"
 import { store } from "./State/store"
 
 interface BootProps {
@@ -18,13 +21,25 @@ export const setupMyCollectionScreen = (Component: React.ComponentType<any>) => 
     navigator: NavigatorIOS
   }> = props => {
     const navViewRef = useRef<View>(null)
-    const { setupNavigation } = useStoreActions(actions => actions.navigation)
+    const navigationActions = useStoreActions(actions => actions.navigation)
+    const artworkActions = useStoreActions(actions => actions.artwork)
+    const initialFormValues = useStoreState(state => state.artwork.formValues)
+
+    // FIXME: Don't initialize form for every collection screen; move this to another component
+    const initialForm = useFormik<ArtworkFormValues>({
+      enableReinitialize: true,
+      initialValues: initialFormValues,
+      initialErrors: validateArtworkSchema(initialFormValues),
+      onSubmit: artworkActions.addArtwork,
+      validationSchema: artworkValidationSchema,
+    })
 
     /**
      * Whenever a new view controller is mounted we refresh our navigation
      */
     useEffect(() => {
-      setupNavigation({
+      artworkActions.initializeFormik(initialForm)
+      navigationActions.setupNavigation({
         navigator: props.navigator,
         navViewRef,
       })
@@ -32,7 +47,9 @@ export const setupMyCollectionScreen = (Component: React.ComponentType<any>) => 
 
     return (
       <View ref={navViewRef}>
-        <Component {...props} />
+        <FormikProvider value={initialForm}>
+          <Component {...props} />
+        </FormikProvider>
       </View>
     )
   }
